@@ -1,13 +1,15 @@
 from keras.layers import Conv2D
 from keras.layers import Dense, Flatten
 from keras.models import Sequential
+from keras.optimizers import Adam
 
 
 class StudentCNN:
-    def __init__(self, action_size, hidden_fc_size):
+    def __init__(self, action_size, hidden_fc_size, learning_rate):
         self.action_size = action_size
         self.hidden_fc_size = hidden_fc_size
         self.model = self._build_model()
+        self.lr = learning_rate
 
     def _build_model(self):
         model = Sequential()
@@ -23,7 +25,7 @@ class StudentCNN:
         model.add(Dense(self.hidden_fc_size, activation='relu'))
         model.add(Dense(self.action_size, activation='softmax'))
 
-        model.compile(optimizer='adam',
+        model.compile(optimizer=Adam(lr=self.lr),
                       loss='categorical_crossentropy',
                       metrics=['accuracy'])
 

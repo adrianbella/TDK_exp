@@ -12,11 +12,12 @@ if __name__ == '__main__':
     AGENT_TYPE = 'DQNAgent'
     database_limit = 992
     hidden_fc_size = 256
+    learning_rate = 0.00005
     env = gym.make(ENV_NAME)  # environment initialization
     file_path = './master_weights/' + ENV_NAME + '_' + AGENT_TYPE + '.h5f'
 
     master_model = MasterCNN(env.action_space.n)
-    student_model = StudentCNN(env.action_space.n, hidden_fc_size)
+    student_model = StudentCNN(env.action_space.n, hidden_fc_size, learning_rate)
 
     logger = Logger(AGENT_TYPE, ENV_NAME, hidden_fc_size, student_model)
 
