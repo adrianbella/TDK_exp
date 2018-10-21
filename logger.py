@@ -26,6 +26,12 @@ class Logger(keras.callbacks.Callback):
 
         student_model.model.summary(print_fn=logging.info)
 
+        with open(self.directory + self.ENV_NAME + '_' + self.agent + '_' + str(self.hidden_fc_size) + '.csv',
+                  'w+') as csvfile:
+            fieldnames = ['acc', 'batch', 'loss', 'size']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+
     def on_train_begin(self, logs={}):
         self.acc = []
         self.batch = []
@@ -43,9 +49,7 @@ class Logger(keras.callbacks.Callback):
         if len(self.acc) > 1:
             with open(self.directory + self.ENV_NAME + '_' + self.agent + '_' + str(self.hidden_fc_size) + '.csv',
                       'a+') as csvfile:
-                fieldnames = ['acc', 'batch', 'loss', 'size']
-                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-                writer.writeheader()
+                writer = csv.DictWriter(csvfile)
                 for i in range(len(self.acc)):
                     writer.writerow({'acc': self.acc[i], 'batch': self.batch[i], 'loss': self.loss[i],
                                      'size': self.size[i]})
