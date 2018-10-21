@@ -11,6 +11,10 @@ class Logger(keras.callbacks.Callback):
         self.ENV_NAME = ENV_NAME
         self.hidden_fc_size = hidden_fc_size
         self.directory = './log/'
+        weights = './student_weights/'
+
+        if not os.path.exists(weights):
+            os.makedirs(weights)
 
         if not os.path.exists(self.directory):
             os.makedirs(self.directory)
