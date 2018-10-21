@@ -49,7 +49,8 @@ class Logger(keras.callbacks.Callback):
         if len(self.acc) > 1:
             with open(self.directory + self.ENV_NAME + '_' + self.agent + '_' + str(self.hidden_fc_size) + '.csv',
                       'a+') as csvfile:
-                writer = csv.DictWriter(csvfile)
+                fieldnames = ['acc', 'batch', 'loss', 'size']
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 for i in range(len(self.acc)):
                     writer.writerow({'acc': self.acc[i], 'batch': self.batch[i], 'loss': self.loss[i],
                                      'size': self.size[i]})
