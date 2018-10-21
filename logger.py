@@ -44,6 +44,7 @@ class Logger(keras.callbacks.Callback):
         self.batch.append(logs.get('batch'))
         self.loss.append(logs.get('loss'))
         self.size.append(logs.get('size'))
+        logging.info('acc:{}, loss:{}, batch{}'.format(logs.get('acc'), logs.get('loss'), logs.get('batch')))
 
     def on_train_end(self, logs={}):
         if len(self.acc) > 1:
