@@ -3,9 +3,10 @@ from keras.layers import Convolution2D
 from keras.layers import Dense, Flatten
 
 
-class TargetCNN:
-    def __init__(self, action_size):
+class StudentCNN:
+    def __init__(self, action_size, hidden_fc_size):
         self.action_size = action_size
+        self.hidden_fc_size = hidden_fc_size
         self.model = self._build_model()
 
     def _build_model(self):
@@ -23,11 +24,15 @@ class TargetCNN:
         # make convolution layers falttend (1 dimensional)
         flattened = Flatten()(hidden_conv_layer_3)
         #  add FC layers
-        hidden_fc_layer = Dense(256, activation='relu')(flattened)
+        hidden_fc_layer = Dense(self.hidden_fc_size, activation='relu')(flattened)
         output_layer = Dense(self.action_size)(hidden_fc_layer)
         # -------------------------------------------
 
         # configure learning process and initialize model
         model = Model(inputs=input, output=output_layer)
+
+        model.compile(optimizer='adam',
+                      loss='categorical_crossentropy',
+                      metrics=['accuracy'])
 
         return model
