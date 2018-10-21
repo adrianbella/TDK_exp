@@ -14,8 +14,8 @@ class Agent:
     def fit_student(self, master, student, env, logger):
 
         for j in range(0, 1000):
-            labels = np.zeros((self.database_limit, 1), dtype=np.int)
-            observations = np.zeros((self.database_limit, 1, 200, 200))
+            labels = np.zeros((self.database_limit, 1), dtype=np.int32)
+            observations = np.zeros((self.database_limit, 1, 200, 200), dtype=np.int32)
 
             for i in range(0, self.database_limit):
                 observation = env.reset()
