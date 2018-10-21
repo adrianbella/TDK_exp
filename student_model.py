@@ -24,7 +24,7 @@ class StudentCNN:
         # make convolution layers falttend (1 dimensional)
         flattened = Flatten()(hidden_conv_layer_3)
         #  add FC layers
-        hidden_fc_layer = Dense(self.hidden_fc_size, activation='relu')(flattened)
+        hidden_fc_layer = Dense(self.hidden_fc_size, activation='softmax')(flattened)
         output_layer = Dense(self.action_size)(hidden_fc_layer)
         # -------------------------------------------
 

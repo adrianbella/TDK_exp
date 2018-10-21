@@ -27,7 +27,7 @@ class Agent:
                 observations[i][0] = observation
 
             one_hot_labels = keras.utils.to_categorical(labels, self.action_size)
-            student.model.fit(observations, one_hot_labels, epochs=2, batch_size=32, callbacks=[logger])
+            student.model.fit(observations, one_hot_labels, epochs=2, batch_size=32, callbacks=[logger], verbose=2)
             student.model.save_weights(
                 filepath='./student_weights/' + self.ENV_NAME + '_' + self.AGENT_TYPE + '_' + str(
                     self.hidden_fc_size) + '.h5f',
