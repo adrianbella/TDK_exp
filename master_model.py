@@ -1,4 +1,3 @@
-from keras import Input, Model
 from keras.layers import Convolution2D, Conv2D
 from keras.layers import Dense, Flatten
 from keras.models import Sequential
