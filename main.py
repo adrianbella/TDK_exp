@@ -12,7 +12,7 @@ if __name__ == '__main__':
     AGENT_TYPE = 'DQNAgent'
     database_limit = 96
     hidden_fc_size = 256
-    learning_rate = 0.00005
+    learning_rate = 0.0005
     env = gym.make(ENV_NAME)  # environment initialization
     file_path = './master_weights/' + ENV_NAME + '_' + AGENT_TYPE + '.h5f'
 
