@@ -23,7 +23,7 @@ class Agent:
             q_values = master.model.predict(observation, batch_size=1)
 
             labels[i] = np.argmax(q_values, axis=1)
-            observations[i][0] = observation
+            observations[i][0] = observation[0][0]
 
         for j in range(0, 1000):
 
