@@ -25,6 +25,7 @@ if __name__ == '__main__':
 
     try:
         master_model.model.load_weights(filepath=file_path)
+        print('Loaded master_weights was successful')
     except ImportError:
         print('Loaded master_weights aborted! File not found:{} '.format(file_path))
 
