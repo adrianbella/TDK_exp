@@ -8,8 +8,8 @@ class StudentCNN:
     def __init__(self, action_size, hidden_fc_size, learning_rate):
         self.action_size = action_size
         self.hidden_fc_size = hidden_fc_size
-        self.model = self._build_model()
         self.lr = learning_rate
+        self.model = self._build_model()
 
     def _build_model(self):
         model = Sequential()
