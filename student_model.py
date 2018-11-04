@@ -1,7 +1,7 @@
 from keras.layers import Conv2D
 from keras.layers import Dense, Flatten
 from keras.models import Sequential
-from keras.optimizers import Adam
+from keras.optimizers import SGD
 
 
 class StudentCNN:
@@ -25,7 +25,7 @@ class StudentCNN:
         model.add(Dense(self.hidden_fc_size, activation='relu'))
         model.add(Dense(self.action_size, activation='softmax'))
 
-        model.compile(Adam(lr=self.lr),
+        model.compile(SGD(lr=self.lr),
                       loss='categorical_crossentropy',
                       metrics=['accuracy'])
 
