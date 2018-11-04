@@ -25,7 +25,8 @@ class StudentCNN:
         model.add(Dense(self.hidden_fc_size, activation='relu'))
         model.add(Dense(self.action_size, activation='softmax'))
 
-        model.compile(SGD(lr=self.lr),
+        sgd = SGD(lr=self.lr)
+        model.compile(optimizer=sgd,
                       loss='categorical_crossentropy',
                       metrics=['accuracy'])
 
