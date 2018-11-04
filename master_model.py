@@ -4,8 +4,9 @@ from keras.models import Sequential
 
 
 class MasterCNN:
-    def __init__(self, action_size):
+    def __init__(self, action_size, file_path):
         self.action_size = action_size
+        self.file_path = file_path
         self.model = self._build_model()
 
     def _build_model(self):
@@ -21,5 +22,11 @@ class MasterCNN:
 
         model.add(Dense(512, activation='relu'))
         model.add(Dense(self.action_size, activation='softmax'))
+
+        try:
+            model.load_weights(filepath=self.file_path)
+            print('Loaded master_weights was successful')
+        except ImportError:
+            print('Loaded master_weights aborted! File not found:{} '.format(self.file_path))
 
         return model
