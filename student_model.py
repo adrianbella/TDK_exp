@@ -1,7 +1,7 @@
 from keras.layers import Conv2D
 from keras.layers import Dense, Flatten
 from keras.models import Sequential
-from keras.optimizers import Adam, SGD
+from keras.optimizers import SGD
 
 
 class StudentCNN:
