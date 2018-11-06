@@ -12,16 +12,20 @@ if __name__ == '__main__':
     AGENT_TYPE = 'DQNAgent'
     database_limit = 1024
     hidden_fc_size = 256
+    hidden_conv1_filters = 8
+    hidden_conv2_filters = 16
     learning_rate = 0.0005
     env = gym.make(ENV_NAME)  # environment initialization
-    file_path = './master_weights/' + ENV_NAME + '_' + AGENT_TYPE + '.h5f'
+    config = ENV_NAME + '_' + AGENT_TYPE + '_conv1' + hidden_conv1_filters + '_conv2' + hidden_conv2_filters + '_fc' + str(hidden_fc_size)
 
-    master_model = MasterCNN(env.action_space.n, file_path)
-    student_model = StudentCNN(env.action_space.n, hidden_fc_size, learning_rate)
+    master_file_path = './master_weights/' + ENV_NAME + '_' + AGENT_TYPE + '.h5f'
 
-    logger = Logger(AGENT_TYPE, ENV_NAME, hidden_fc_size, student_model)
+    master_model = MasterCNN(env.action_space.n, master_file_path)
+    student_model = StudentCNN(env.action_space.n, hidden_fc_size, learning_rate, hidden_conv1_filters, hidden_conv2_filters)
 
-    agent = Agent(env.action_space.n, database_limit, ENV_NAME, AGENT_TYPE, hidden_fc_size)
+    logger = Logger(config, student_model)
+
+    agent = Agent(env.action_space.n, database_limit, config)
 
     agent.fit_student(master_model, student_model, env, logger)
 

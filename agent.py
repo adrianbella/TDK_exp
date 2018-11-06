@@ -4,12 +4,10 @@ import numpy as np
 
 
 class Agent:
-    def __init__(self, action_size, database_limit, ENV_NAME, AGENT_TYPE, hidden_fc_size):
+    def __init__(self, action_size, database_limit, file_path):
         self.action_size = action_size
         self.database_limit = database_limit
-        self.ENV_NAME = ENV_NAME
-        self.AGENT_TYPE = AGENT_TYPE
-        self.hidden_fc_size = hidden_fc_size
+        self.file_path = './student_weights/' + file_path
 
     def fit_student(self, master, student, env, logger):
 
@@ -28,11 +26,7 @@ class Agent:
                 observations[i][0] = observation[0][0]
 
             one_hot_labels = keras.utils.to_categorical(labels, self.action_size)
-            student.model.fit(observations, one_hot_labels, epochs=1, batch_size=64, callbacks=[logger],
-                                        verbose=2)
+            student.model.fit(observations, one_hot_labels, epochs=1, batch_size=64, callbacks=[logger], verbose=2)
 
             if j % 50 == 0:
-                student.model.save_weights(
-                    filepath='./student_weights/' + self.ENV_NAME + '_' + self.AGENT_TYPE + '_' + str(
-                        self.hidden_fc_size) + '.h5f',
-                    overwrite=True)
+                student.model.save_weights(filepath=self.file_path + '.h5f', overwrite=True)
