@@ -11,7 +11,7 @@ if __name__ == '__main__':
     ENV_NAME = 'VirtualDrone-v0'
     AGENT_TYPE = 'DQNAgent'
     database_limit = 1024
-    hidden_fc_size = 256
+    hidden_fc_size = 8
     hidden_conv1_filters = 8
     hidden_conv2_filters = 16
     learning_rate = 0.0005
