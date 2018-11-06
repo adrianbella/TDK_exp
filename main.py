@@ -16,7 +16,7 @@ if __name__ == '__main__':
     hidden_conv2_filters = 16
     learning_rate = 0.0005
     env = gym.make(ENV_NAME)  # environment initialization
-    config = ENV_NAME + '_' + AGENT_TYPE + '_conv1' + hidden_conv1_filters + '_conv2' + hidden_conv2_filters + '_fc' + str(hidden_fc_size)
+    config = ENV_NAME + '_' + AGENT_TYPE + '_conv1' + str(hidden_conv1_filters) + '_conv2' + str(hidden_conv2_filters) + '_fc' + str(hidden_fc_size)
 
     master_file_path = './master_weights/' + ENV_NAME + '_' + AGENT_TYPE + '.h5f'
 
